@@ -1,10 +1,12 @@
 'use strict';
 let models = require('./models/index.js');
+let auth = require('./auth.js');
 let express = require('express');
 let router = express.Router();
 
 // post a new character
 router.post('/', (req, res) =>{
+	auth(req, res);
 	let model = req.body;
 	let character = new models.character(model);      
 	console.log(character);
@@ -18,7 +20,7 @@ router.post('/', (req, res) =>{
 
 // get all characters 
 router.get('/', (req, res) => {
-
+	auth(req, res);
 	models.character.find({}, function(err, docs){
 		res.send(docs);
 	})
@@ -27,6 +29,7 @@ router.get('/', (req, res) => {
 
 // get characters by ID
 router.get('/:character_id', (req, res) =>{
+	auth(req, res);
 	models.character.findById(req.params.character_id, (err, character) =>{
 		if (err)
 			res.send(err);
@@ -36,7 +39,7 @@ router.get('/:character_id', (req, res) =>{
 
 // update character 
 router.put('/:character_id', (req, res) =>{
-
+	auth(req, res);
 	models.character.findById(req.params.character_id, (err, character)=>{
 		if (err)
 			res.send(err);
@@ -54,6 +57,7 @@ router.put('/:character_id', (req, res) =>{
 
 // delete character
 router.delete('/:character_id', (req, res) =>{
+	auth(req, res);
 	models.character.remove({
 		_id: req.params.character_id
 	}, (err, character) =>{
