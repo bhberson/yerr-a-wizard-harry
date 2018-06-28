@@ -34,10 +34,10 @@ router.post('/search/', (req, res) =>{
 	});
 });
 
-// get all characters 
+// get all spells 
 router.get('/', (req, res) => {
 	auth(req, res);
-	models.spell.find({}, function(err, docs){
+	models.spell.find({}, null, {sort: {'_id': -1}}, function(err, docs){
 		res.send(docs);
 	})
 
