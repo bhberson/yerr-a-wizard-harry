@@ -23,7 +23,7 @@ router.post('/search/', (req, res) =>{
 	auth(req, res);
 	let body = req.body;
 
-	models.spell.findOne({ name: body.name }, (err, spell) =>{
+	models.spell.findOne({ name: body.name.toLowerCase() }, (err, spell) =>{
 		if (err)
 			res.send(err);
 		else{

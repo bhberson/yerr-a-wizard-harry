@@ -8,7 +8,7 @@ let PotionSchema = new Schema({
 	ingredients: [{type: String}],
 	effect: String,
 	sideEffects: String,
-	difficultyLevel: {type: String, enum: ['beginner', 'intermediate', 'advanced']},
+	difficultyLevel: {type: String, lowercase: true, enum: ['beginner', 'intermediate', 'advanced']},
 	brewingTime: Number,
 	dangerous: Boolean,
 });
