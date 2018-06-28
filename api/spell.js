@@ -27,6 +27,8 @@ router.post('/search/', (req, res) =>{
 		if (err)
 			res.send(err);
 		else{
+			if (spell === null)
+				res.json([]);
 			res.json(spell);
 		}
 	});
