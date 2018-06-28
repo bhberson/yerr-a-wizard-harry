@@ -13,4 +13,4 @@ let PotionSchema = new Schema({
 	dangerous: Boolean,
 });
 
-module.exports = mongoose.model('Character', CharacterSchema);
+module.exports = mongoose.model('Potion', PotionSchema);
