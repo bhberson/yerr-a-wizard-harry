@@ -23,7 +23,7 @@ router.post('/search/', (req, res) =>{
 	auth(req, res);
 	let body = req.body;
 
-	models.character.findOne({ firstName: body.firstName, lastName: body.lastName }, (err, character) =>{
+	models.character.findOne({ firstName: body.firstName, lastName: body.lastName } '_id', (err, character) =>{
 		if (err)
 			res.send(err);
 		else{
