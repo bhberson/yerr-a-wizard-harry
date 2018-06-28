@@ -3,13 +3,13 @@ var express = require('express');
 var app = express();
 var api = require('./api/index.js');
 var bodyParser = require('body-parser');
-var mongoDB = process.env.MONGODB_URI || 'mongodb://localhost/api';
+var mongoDB = process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/api';
 
 var Character = require('./api/models/character');
 
 // configuration for bodyParser to get data from a POST
 
-app.use(bodyParser.urlencoded({extend: true}));
+app.use(bodyParser.urlencoded({ extend: true }));
 app.use(bodyParser.json());
 
 //set the port
@@ -28,16 +28,13 @@ app.use('/api/sortinghat', api.sortingHat);
 //start the server
 
 app.listen(port);
-let connection = api.mongoose.createConnection();
-console.log({mongoDB});
-connection.open(mongoDB, (err)=>{
-	if(err)
-	{
-		console.error(err);
-	}
-	else {
+console.log({ mongoDB });
+let c = api.mongoose.connect(mongoDB);
+let connection = api.mongoose.connection;
+connection.on('error', console.error.bind(console, 'connection error:'));
+connection.once('open', function () {
 	console.log('server connected');
-}
 });
+
 
 console.log('wingardium leviosa')
