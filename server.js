@@ -7,6 +7,7 @@ var mongoDB = process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/api';
 
 var Character = require('./api/models/character');
 var Potion = require('./api/models/potion');
+var Spell = require('./api/models/spell');
 
 // configuration for bodyParser to get data from a POST
 
@@ -22,6 +23,9 @@ app.use('/api/characters', api.character);
 
 //Potions
 app.use('/api/potions', api.potion);
+
+//Spells
+app.use('/api/spells', api.spell);
 
 //Sorting Hat
 app.use('/api/houses', api.houses);
