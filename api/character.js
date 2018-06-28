@@ -18,6 +18,22 @@ router.post('/', (req, res) =>{
 	});
 });
 
+// search
+router.post('/search/', (req, res) =>{
+	auth(req, res);
+	let body = req.body;
+
+	models.character.findOne({ firstName: body.firstName, lastName: body.lastName }, (err, character) =>{
+		if (err)
+			res.send(err);
+		else{
+			if (character === null)
+				res.json([]);
+			res.json(character);
+		}
+	});
+});
+
 // get all characters 
 router.get('/', (req, res) => {
 	auth(req, res);
