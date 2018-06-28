@@ -6,6 +6,7 @@ var bodyParser = require('body-parser');
 var mongoDB = process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/api';
 
 var Character = require('./api/models/character');
+var Potion = require('./api/models/potion');
 
 // configuration for bodyParser to get data from a POST
 
@@ -19,6 +20,9 @@ var port = process.env.PORT || 8080;
 // routes for the API
 //Characters
 app.use('/api/characters', api.character);
+
+//Potions
+app.use('/api/potions', api.potion);
 
 //Sorting Hat
 app.use('/api/houses', api.houses);
