@@ -37,7 +37,7 @@ router.post('/search/', (req, res) =>{
 // get all characters 
 router.get('/', (req, res) => {
 	auth(req, res);
-	models.character.find({}, function(err, docs){
+	models.character.find({}, null, {sort: {'_id': -1}}, function(err, docs){
 		res.send(docs);
 	})
 
