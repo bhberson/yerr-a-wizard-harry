@@ -23,6 +23,9 @@ router.post('/search/', (req, res) =>{
 	auth(req, res);
 	let body = req.body;
 
+	if (!body.name);
+		res.json([]);
+
 	models.spell.findOne({ name: body.name }, (err, spell) =>{
 		if (err)
 			res.send(err);
