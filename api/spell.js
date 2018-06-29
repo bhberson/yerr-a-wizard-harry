@@ -10,11 +10,11 @@ router.post('/', (req, res) =>{
 	let model = req.body;
 	let spell = new models.spell(model);      
 	console.log(spell);
-	spell.save(function(err) {
+	spell.save(function(err, createdSpell) {
 	    if (err)
 	        res.send(err + ' error saving spell!');
 
-	    res.json({ message: 'Spell created!' });
+	    res.json({ _id: createdSpell._id });
 	});
 });
 
