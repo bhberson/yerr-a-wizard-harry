@@ -10,11 +10,11 @@ router.post('/', (req, res) =>{
 	let model = req.body;
 	let character = new models.character(model);      
 	console.log(character);
-	character.save(function(err) {
+	character.save(function(err, createdCharacter) {
 	    if (err)
 	        res.send(err + ' error saving character!');
 
-	    res.json({ message: 'Character created!' });
+	    res.json({ _id: createdCharacter._id });
 	});
 });
 

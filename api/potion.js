@@ -10,11 +10,11 @@ router.post('/', (req, res) =>{
 	let model = req.body;
 	let potion = new models.potion(model);      
 	console.log(potion);
-	potion.save(function(err) {
+	potion.save(function(err, createdPotion) {
 	    if (err)
 	        res.send(err + ' error saving potion!');
 
-	    res.json({ message: 'Potion created!' });
+	    res.json({ _id: createdPotion._id });
 	});
 });
 
